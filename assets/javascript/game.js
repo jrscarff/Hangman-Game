@@ -41,9 +41,7 @@ function startGame() {
 	document.onkeyup = function(event) {
 		userInput = event.key;
 		if (userInput === answer) {
-			alert("You have guessed correctly!");
-			wins ++;
-			document.getElementById("winCount").textContent = wins;
+			userWins();
 		}
 		else if (alreadyCheck(userInput)) {
 
@@ -52,9 +50,7 @@ function startGame() {
 			guessCount(userInput)
 		}
 		if (guessLeft === 0) {
-			alert("You Lost");
-			losses ++;
-			document.getElementById("lossCount").textContent = losses;
+			userLoses();
 		}
 	}
 }
@@ -64,6 +60,15 @@ function startGame() {
 function userWins () {
 	alert("You have guessed correctly!");
 	wins ++;
+	resetGame();
+	startGame();
+}
+function userLoses () {
+	alert("You ran out of guesses and lost");
+	losses ++;
+	resetGame();
+	startGame();
+	
 }
 function guessCount (event) {
 	console.log(event); 
@@ -78,5 +83,13 @@ function alreadyCheck (event) {
 			return true;
 		}
 	}
+}
+function resetGame () {
+	display = "";
+	guessLeft = 10;
+	document.getElementById("already").textContent = display;
+	document.getElementById("left").textContent = guessLeft;
+	document.getElementById("lossCount").textContent = losses;
+	document.getElementById("winCount").textContent = wins;
 }
 startGame()
