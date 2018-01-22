@@ -28,7 +28,7 @@
 var possible = "abcdefghijklmnopqrstuvwxyz";
 var wins = 0;
 var losses = 0;
-var guessLeft = 15;
+var guessLeft = 10;
 var display = "";
 
 document.getElementById("winCount").textContent = wins;
@@ -44,9 +44,10 @@ function startGame() {
 			alert("You have guessed correctly!");
 			wins ++;
 			document.getElementById("winCount").textContent = wins;
-		} 
-		else if (alreadyCheck(userInput)) {
 		}
+		else if (alreadyCheck(userInput)) {
+
+		} 
 		else {
 			guessCount(userInput)
 		}
@@ -65,10 +66,17 @@ function userWins () {
 	wins ++;
 }
 function guessCount (event) {
-	console.log(event);
-	guessLeft --;
-			display = display + event + ",";
-			document.getElementById("left").textContent = guessLeft;
-			document.getElementById("already").textContent = display;
+	console.log(event); 
+		guessLeft --;
+		display = display + event + ",";
+		document.getElementById("left").textContent = guessLeft;
+		document.getElementById("already").textContent = display;
+}
+function alreadyCheck (event) {
+	for (var i = 0; i < display.length; i++) {
+		if (display[i] === event) {
+			return true;
+		}
+	}
 }
 startGame()
