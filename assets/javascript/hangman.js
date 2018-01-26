@@ -32,17 +32,7 @@ document.getElementById("lossCount").textContent = losses;
 
 
 	document.onkeyup = function(event) {
-		if (answer.join(" ") === display.join(" ")) {
-				userWins();
-				document.getElementById("wrong").textContent = answer.join(" ");
-				resetGame();
-			}
-
-			if (left === 0) {
-				userLoses();
-				document.getElementById("wrong").textContent = answer.join(" ");
-				resetGame();
-			}
+		
 
 		userInput = event.key;
 
@@ -53,7 +43,18 @@ document.getElementById("lossCount").textContent = losses;
 				incorrects.push(userInput);
 				left --;
 			}
-			
+
+			if (answer.join(" ") === display.join(" ")) {
+				userWins();
+				document.getElementById("wrong").textContent = answer.join(" ");
+				resetGame();
+			}
+
+			if (left === 0) {
+				userLoses();
+				document.getElementById("wrong").textContent = answer.join(" ");
+				resetGame();
+			}
 			
 
 
@@ -125,12 +126,8 @@ function userLoses () {
 }
 	}
 
-function test () {
-	var str = "world";
-	var n = str.includes("z");
-	console.log(n);
-}
 
 
 
-test()
+
+loadGame()
